@@ -1,0 +1,518 @@
+<?php
+$conn = mysqli_connect('localhost', 'root', '');
+
+if(!$conn){
+	
+	die("Sorry, Couldn't Connect To Server!");
+}
+
+$db = mysqli_select_db($conn, 'mycv');
+
+if(!$db){
+
+	die("Sorry, Couldn't Open the Database");
+}
+$query="SELECT * FROM  images";
+$result=mysqli_query($conn,$query);
+?>
+
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+	<title>CV | Sunita Mohanty</title>
+	<!-- Meta Set -->
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+	<!-- Links To Include -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="fonts/font-awesome.min.css">
+	<link rel="stylesheet" href="css/hover.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="css/style.css">
+	<!-- Sources of JS To Include -->
+	<script src="js/html5shiv.min.js"></script>
+	<script src="js/respond.min.js"></script>
+	
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="200">
+ 
+ <!-- Start Navbar-Header -->
+
+	 	<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light ml-auto">
+			<div class="container">
+			  <a class="navbar-brand" href="index.html" data-wow-duration="2s">M.<span>Sunita</span></a>
+
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobileNavbar" aria-controls="mobileNavbar" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+
+			  <div class="collapse navbar-collapse" id="mobileNavbar">
+			    <ul class="navbar-nav ml-auto">
+			      <li class="nav-item">
+			        <a class="nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="#about">About</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="#resume">Resume</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="#skills">Skills</a>
+			      </li>
+			       <li class="nav-item">
+			        <a class="nav-link" href="#contact">Contact</a>
+			      </li>
+			    </ul>
+			  </div>
+			</div>
+		</nav>
+
+ <!-- End Navbar-Header -->
+
+ <!-- Start Banner -->
+ 	<section class="banner text-center">
+ 		<div class="banner-bg">
+ 		<div class="container">
+ 			<div class="info">
+ 			<span>Hello, My Name Is</span>
+ 			<h2 class="wow bounceInRight" data-wow-duration="2s">Sunita Mohanty</h2>
+ 			<p class="lead ">I'm a PHP Developer and I Have a Creative Background in Web Developement</p>
+ 			<a href="#about"><button class="btn btn-white">Learn More</button></a>
+ 		</div>
+ 		</div>
+ 	</div>
+ 	</section>
+
+ 	<!-- End Banner -->
+
+ 	<!-- Start About Me Section -->
+
+ 		<section class="about text-center" id="about">
+ 			<div class="container">
+	 				<h1 class="hvr-underline-from-left">About Me</h1>
+ 				<div class="row">
+ 					<div class="col-lg-8 col-md-8">
+ 						<div class="about-info text-left wow bounceInLeft" data-wow-duration="2s" data-wow-offset="200">
+ 							<h2>Objective</h2>
+ 							<p class="lead">An opportunity to work and upgrade oneself, as well as being involved in an organization that believes in gaining a competitive edge and giving back to the community. I have a creative touch in Front-End and Back-End development. I focus on using my interpersonal skills to build good user experience and create a strong interest in my employers. I hope to develop skills in motion design and my knowledge of the Web and become an honest asset to the business. As an individual, I’m self-confident you’ll find me creative, funny and naturally passionate. I’m a forward thinker, which others may find inspiring when working as a team.</p>
+ 							<h2>What I Do</h2>
+ 							<p class="lead">I have been working as a PHP developer since. I have a love of clean, elegant styling, and I have lots of experience in the production of CSS3,Bootstrap,Javascipt and HTML5 for modern websites. I loving creating awesome as per my clients’ needs. I think user experience when I try to craft something for my clients. Making a design awesome.</p>
+ 						</div>
+	 						<div class="row">
+	 							<div class="col-sm-4">
+	 								<div class="service">
+	 									<div class="s-icon">
+	 										<i class="fa fa-desktop fa-2x"></i>
+	 									</div>
+	 									<h4>Web Design</h4>
+	 								</div>
+	 							</div>
+	 							<div class="col-sm-4">
+	 								<div class="service">
+	 									<div class="s-icon">
+		 									<i class="fa fa-code fa-2x"></i>
+		 								</div>
+		 								<h4>Web Development</h4>
+	 								</div>
+	 							</div>
+	 							<div class="col-sm-4">
+	 								<div class="service">
+	 									<div class="s-icon">
+		 									<i class="fa fa-diamond fa-2x"></i>
+		 								</div>
+	 								    <h4>Logo Design</h4>
+	 								</div>
+	 							</div>
+	 						</div>
+	 					</div>
+ 					<div class="col-lg-4 col-md-4">
+ 						<div class="person-bio wow bounceInRight" data-wow-duration="2s" data-wow-offset="200">
+ 							<?php 
+ 							 
+
+ 							while($row=mysqli_fetch_array($result)){
+ 							?>
+ 						
+	 						<img src="<?php echo $row['images'];?>">
+	 						<?php
+	 					}
+	 					?>
+	 						<ul class="list-unstyled text-left">
+	 							<li><strong>Name: </strong>Sunita Mohanty</li>
+	 							<li><strong>Email: </strong>sunitamohanty304@gmail.com</li>
+	 							<li><strong>Phone: </strong>+91-9971674691</li>
+	 							<li><strong>Date Of Birth: </strong>18/09/1991</li>
+	 							<li><strong>Nationality: </strong>Indian</li>
+	 							<li><strong>Address: </strong>New Delhi, Delhi</li>
+	 						</ul>
+	 						
+ 						
+	 						
+	 					</div>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</section>
+
+ 	<!-- End About ME Section -->
+
+ 	<!-- Start Features Section -->
+
+ 		<section class="features text-center">
+ 			<div class="feat_bg">
+	 			<div class="container">
+	 				<h1>Features</h1>
+	 				<div class="row">
+	 					<div class="col-lg-3 col-sm-6">
+	 						<div class="feat wow fadeInLeft" data-wow-duration="1.5s" data-wow-offset="300">
+	 							<img src="images/code.png">
+	 							<h4>Fresh &amp; Clean Code</h4>
+	 							<p class="lead">
+	 								I provide clean code with the possibility of quick understanding by simple standards, trying to avoid errors, and I also shrink the code to the smallest possible size for more performance in terms of loading of the site
+	 							</p>
+	 						</div>
+	 					</div>
+	 					<div class="col-lg-3 col-sm-6">
+	 						<div class="feat wow fadeInDown" data-wow-duration="1.5s" data-wow-offset="300">
+	 							<img src="images/eye_icon.png">
+	 							<h4>Awesome Display</h4>
+	 							<p class="lead">
+	 								The external and internal appearance is the most important thing for me and my work in the field of the web, and abide by the rules and standards used to show the best form is familiar with the user and very comfortable to the eye when looking
+	 							</p>
+	 					</div>
+	 					</div>
+	 					<div class="col-lg-3 col-sm-6">
+	 						<div class="feat wow fadeInUp" data-wow-duration="1.5s" data-wow-offset="300">
+	 							<img src="images/responsive.png">
+	 							<h4>100% Responsive</h4>
+	 							<p class="lead">
+	 								I build 100% responsive websites on all sizes of screens in different versions with a touch of creativity in motion and volume with the best divide and collection
+	 							</p>
+	 						</div>
+	 					</div>
+	 					<div class="col-lg-3 col-sm-6">
+	 						<div class="feat wow fadeInRight" data-wow-duration="1.5s" data-wow-offset="300">
+	 							<img src="images/pencil.png">
+	 							<h4>Well Documented</h4>
+	 							<p class="lead">
+	 								I provide a well documented and written work so that the reader understands it easily and smoothly and every line or some lines of code I document them well
+	 							</p>
+	 						</div>
+	 					</div>
+	 				</div>
+	 			</div>
+	 		</div>
+ 		</section>
+
+ 	<!-- End Features Section -->
+
+ 	<!-- Start Education Section -->
+
+ 		<section class="education text-center">
+ 			<div class="container">
+ 				<h1>My Education</h1>
+ 				<div class="row">
+ 					<div class="col-md-6">
+ 						<div class="timeline wow slideInLeft" data-wow-duration="2s" data-wow-delay=".5s">
+	 						<h4>2013 / 2016</h4>
+	 					</div>
+ 					</div>
+ 					<div class="col-md-6">
+ 						<div class="edu wow slideInRight" data-wow-duration="2s" data-wow-delay=".5s">
+	 						<h4>Master Degree Certificate</h4>
+	 						<span>F.M. University</span> <i class="fa fa-map-marker"></i> Balasore, <strong>Odisha</strong> / From Auguest 2013 to July 2016
+	 						<p>I have completed <i>Computer Information Systems</i> With a Master's Degree at (<span class="text-success">Very Good</span>) Average.</p>
+	 						<hr>
+	 					</div>
+ 					</div>
+ 					<div class="col-md-6">
+ 						<div class="timeline wow slideInLeft" data-wow-duration="2s" data-wow-delay=".5s">
+	 						<h4>2008 / 2013</h4>
+	 					</div>
+ 					</div>
+ 					<div class="col-md-6">
+ 						<div class="edu wow slideInRight" data-wow-duration="2s" data-wow-delay=".5s">
+	 						<h4>Bachelor Degree Certificate</h4>
+	 						<span>F.M. University</span> <i class="fa fa-map-marker"></i> Balasore, <strong>Odisha</strong> / From May 2008 to May 2013
+	 						<p>I have completed <i>Bachelor's Degree </i> With a  (<span class="text-success">Very Good</span>) Average.</p>
+	 						<hr>
+	 					</div>
+ 					</div>
+ 					<div class="col-md-6">
+ 						<div class="timeline wow slideInLeft" data-wow-duration="2s" data-wow-delay="1s">
+ 							<h4>2006 / 2007</h4>
+ 						</div>
+ 					</div>
+ 					<div class="col-md-6">
+ 						<div class="edu wow slideInRight" data-wow-duration="2s" data-wow-delay="1s">
+	 						<h4>High School Certificate</h4>
+							<span>B.K.Academy,Soharia</span> <i class="fa fa-map-marker"></i> Balasore, <strong>Odisha
+							</strong> / From April 2006 to June 2007
+	 						<p>I Hold a High School Certificate in an <i>with </i> Major  Average (<span class="text-success">75.5%</span>).</p>
+	 						<hr>
+	 					</div>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</section>
+
+ 	<!-- End Education Section -->
+
+ 	<!-- Start Resume Section -->
+
+ 		<section class="resume text-center" id="resume">
+ 			<div class="container">
+ 				<h1>Resume</h1>
+ 				<p class="lead wow flipInY" data-wow-duration="1.5s" data-wow-offset="300">
+ 					Here you can take a deep look and read what I holding in this resume, wishing you find skills and details that you are looking for with all love, so download my resume and check it out.
+ 				</p>
+ 				<a href="Mahmoud-CV.pdf" download="My CV">
+	 				<button class="btn btn-danger btn-lg hvr-wobble-vertical" type="button"><i class="fa fa-download  wow bounce" data-wow-delay="2s"></i> Download Resume</button>
+	 			</a>
+ 			</div>
+ 		</section>
+
+ 	<!-- End Resume Section -->
+
+ 	<!-- Start Others Section -->
+
+ 		<section class="others text-center">
+ 			<div class="container">
+ 				<div class="row">
+ 					<div class="col-sm-4">
+ 						<div class="piece wow zoomIn" data-wow-duration="1.5s" data-wow-offset="200" data-wow-delay=".3s">
+ 							<h3>Values</h3>
+ 							<ul class="list-unstyled">
+ 								<li>Special design,</li>
+ 								<li>The reality in work,</li>
+ 								<li>Delivery on time,</li>
+ 								<li>Tidy and clean code.</li>
+ 							</ul>
+ 						</div>
+ 					</div>
+ 					<div class="col-sm-4">
+ 						<div class="piece wow zoomIn" data-wow-duration="1.5s" data-wow-offset="200" data-wow-delay=".8s">
+ 							<h3>Goals</h3>
+ 							<ul class="list-unstyled">
+ 								<li>Good Work,</li>
+ 								<li>High level in work,</li>
+ 								<li>Full confidence,</li>
+ 								<li>Full satisfaction.</li>
+ 							</ul>
+ 						</div>
+ 					</div>
+ 					<div class="col-sm-4">
+ 						<div class="piece wow zoomIn" data-wow-duration="1.5s" data-wow-offset="200" data-wow-delay="1.3s">
+ 							<h3>Hobbies</h3>
+ 							<ul class="list-unstyled">
+ 								<li>Comedian,</li>
+ 								<li>PC Gaming,</li>
+ 								<li>Reading, Traveling, Photography,</li>
+ 								<li>Journeys and Internet browsing.</li>
+ 							</ul>
+ 						</div>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</section>
+
+ 	<!-- End Others Section -->
+
+ 	<!-- Start Skills Section -->
+
+ 		<section class="skills text-center" id="skills">
+ 			<div class="container">
+ 				<h1>Skills</h1>
+ 				<div class="row">
+ 					<div class="col-md-6">
+ 						<div class="my-skills wow slideInUp" data-wow-duration="1.5s" data-wow-offset="300">
+ 							<div class="progress">
+ 								<div class="progress-bar bg-danger" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="85%" style="width: 85%">
+ 									HTML5 / CSS3
+ 								</div>
+ 								<span>85%</span>
+ 							</div>
+ 							<div class="progress">
+ 								<div class="progress-bar bg-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="80%" style="width: 80%">
+ 									PHP / MySQL
+ 								</div>
+ 								<span>80%</span>
+ 							</div>
+ 							<div class="progress">
+	 								<div class="progress-bar bg-danger" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="78%" style="width: 78%">
+	 									C++
+	 								</div>
+	 								<span>78%</span>
+	 							</div>
+ 						</div>
+ 					</div>
+ 					<div class="col-md-6">
+ 						<div class="my-skills wow slideInDown" data-wow-duration="1.5s" data-wow-offset="300">
+	 						<div class="progressbar">
+	 							<div class="progress">
+	 								<div class="progress-bar bg-danger" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="88%" style="width: 88%">
+	 									JavaScript / jQuery
+	 								</div>
+	 								<span>88%</span>
+	 							</div>
+	 							<div class="progress">
+	 								<div class="progress-bar bg-danger" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="90%" style="width: 90%">
+	 									Bootstrap
+	 								</div>
+	 								<span>90%</span>
+	 							</div>
+	 							<div class="progress">
+	 								<div class="progress-bar bg-danger" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="78%" style="width: 78%">
+	 									Java
+	 								</div>
+	 								<span>75%</span>
+	 							</div>
+	 						</div>
+	 					</div>
+	 				</div>
+ 				</div>
+ 				<h3 class="text-center">More Skills</h3>
+ 				<div class="row">
+ 					<div class="col-md-2 col-sm-4 col-xs-6">
+ 						<div class="more-skills wow slideInLeft" data-wow-duration="2" data-wow-delay=".7s" data-wow-offset="150">
+ 							<div class="chart" data-percent="85">85%</div>
+			 				<span>Team Worker</span>
+ 						</div>
+ 					</div>
+ 					<div class="col-md-2 col-sm-4 col-xs-6">
+ 						<div class="more-skills wow slideInLeft" data-wow-duration="2" data-wow-delay=".5s" data-wow-offset="150"">
+ 							<div class="chart" data-percent="90">90%</div>
+ 							<span>Self-Learning</span>
+ 						</div>
+ 					</div>
+ 					<div class="col-md-2 col-sm-4 col-xs-6">
+ 						<div class="more-skills wow slideInLeft" data-wow-duration="2" data-wow-delay=".3s" data-wow-offset="150">
+ 							<div class="chart" data-percent="88">88%</div>
+ 							<span>Self-Motivated</span>
+ 						</div>
+ 					</div>
+ 					<div class="col-md-2 col-sm-4 col-xs-6">
+ 						<div class="more-skills wow slideInRight" data-wow-duration="2" data-wow-delay=".3s" data-wow-offset="150">
+ 							<div class="chart" data-percent="82">82%</div>
+ 							<span>Problem Solver</span>
+ 						</div>
+ 					</div>
+ 					<div class="col-md-2 col-sm-4 col-xs-6">
+ 						<div class="more-skills wow slideInRight" data-wow-duration="2" data-wow-delay=".5s" data-wow-offset="150">
+ 							<div class="chart" data-percent="80">80%</div>
+ 							<span>Communication Skills</span>
+ 						</div>
+ 					</div>
+ 					<div class="col-md-2 col-sm-4 col-xs-6">
+ 						<div class="more-skills wow slideInRight" data-wow-duration="2" data-wow-delay=".7s" data-wow-offset="150">
+ 							<div class="chart" data-percent="80">80%</div>
+ 							<span>Worker Under Pressure</span>
+ 						</div>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</section>
+
+ 	<!-- End Skills Section -->
+
+ 	<!-- Start Contact Section -->
+
+ 		<section class="contact text-center" id="contact">
+ 			<div class="contact-bg">
+ 				<div class="container">
+ 					<h1>Contact Me</h1>
+ 					<p>Feel Free And Contact Me Anytime</p>
+ 					<form role="form" action="contact.php" method="post">
+	 					<div class="row">
+	 						<div class="col-md-6">
+	 							<div class="wow bounceInLeft" data-wow-duration="1.5s" data-wow-offset="240">
+		 							<div class="form-group">
+		 								<input class="form-control form-control-lg" type="text" placeholder="username" name="name" required>
+		 							</div>
+		 							<div class="form-group">
+		 								<input class="form-control form-control-lg" type="text" placeholder="Email" name="email" required>
+		 							</div>
+		 							<div class="form-group">
+		 								<input class="form-control form-control-lg" type="text" placeholder="Phone" name="phone" required>
+		 							</div>
+		 						</div>
+	 						</div>
+	 						<div class="col-md-6">
+	 							<div class="wow bounceInRight" data-wow-duration="1.5s" data-wow-offset="180">
+			 							<div class="form-group">
+				 							<textarea class="form-control" placeholder="Your Message..." name="message" required>
+				 							</textarea>
+				 						</div>
+		 							<button class="btn btn-danger btn-lg btn-block hvr-pulse-grow" type="submit" name="contact-btn">Get In Touch</button>
+	 							</div>
+	 						</div>
+	 					</div>
+	 				</form>
+	 				<div class="contact-info text-center">
+	 					<div class="container">
+		 					<p><span><i class="fa fa-envelope"></i> &nbsp;sunitamohanty304@gmail.com</span>
+				 			   <span><i class="fa fa-phone"></i> &nbsp;+91-9971674691</span>
+				 			   <span><i class="fa fa-map-marker"></i> &nbsp;New Delhi, Delhi</span>
+				 			</p>
+				 		</div>
+	 				</div>
+ 				</div>
+ 			</div>
+ 		</section>
+
+ 	<!-- End Contact Section -->
+
+ 	<!-- Start Footer Section -->
+
+ 		<section class="footer text-center">
+ 			<div class="container">
+ 				<p class="lead">
+ 					Copyright &copy; 2019 Sunita Mohanty
+ 				</p>
+ 				<ul class="list-unstyled">
+ 					<li>
+ 						<a href="">
+ 						<img src="images/social-media/fb.png">
+ 					</a>
+ 				</li>
+ 					<li>
+ 						<a href="">
+ 							<img src="images/social-media/twit.png">
+ 						</a>
+ 					</li>
+ 					<li>
+ 						<a href="">
+ 							<img src="images/social-media/lin.png">
+ 						</a>
+ 					</li>
+ 					<li>
+ 						<a href="https://mail.google.com/mail/u/0/?tab=wm&ogbl#inbox">
+ 							<img src="images/social-media/gplus.png">
+ 						</a>
+ 					</li>
+ 				</ul>
+ 			</div>
+ 		</section>
+
+ 	<!-- End Footer Section -->
+
+ 	<!-- Start Scroll To Top -->
+ 	<div class="scroll_top">
+ 		<i class="fa fa-angle-up"></i>
+ 	</div>
+ 	<!-- End Scroll To Top -->
+
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easypiechart.js"></script>
+<!--<script src="js/jquery.nicescroll.min.js"></script>-->
+<script src="js/wow.min.js"></script>
+<script> new WOW().init(); </script>
+<script src="js/main.js"></script>
+</body>
+</html>
